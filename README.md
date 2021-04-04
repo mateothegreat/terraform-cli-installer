@@ -1,5 +1,8 @@
 # Install or upgrade terraform cli
 
+with the frequency of `terraform` releases maintaining the latest version
+is a pain in the ass. Enjoy this one-liner! PR to your hearts content <3
+
 ## One-liner (using sudo)
 
 ```bash
