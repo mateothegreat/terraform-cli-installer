@@ -1,9 +1,15 @@
 # Install or upgrade terraform cli
 
-## One-liner
+## One-liner (using sudo)
 
 ```bash
 wget https://raw.githubusercontent.com/mateothegreat/terraform-cli-installer/main/tf-install && chmod +x tf-install && sudo ./tf-install
+```
+
+## One-liner (without sudo)
+
+```bash
+wget https://raw.githubusercontent.com/mateothegreat/terraform-cli-installer/main/tf-install && chmod +x tf-install && ./tf-install
 ```
 
 ## Running
