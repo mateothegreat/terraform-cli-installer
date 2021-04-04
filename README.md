@@ -19,7 +19,7 @@ chmod +x tf-install && \
 ```bash
 (venv) ➜  a git:(main) ✗ wget https://raw.githubusercontent.com/mateothegreat/terraform-cli-installer/main/tf-install && \
 chmod +x tf-install && \
-./tf-install
+sudo ./tf-install
 
 --2021-04-04 04:16:21--  https://raw.githubusercontent.com/mateothegreat/terraform-cli-installer/main/tf-install
 Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.109.133, 185.199.110.133, ...
