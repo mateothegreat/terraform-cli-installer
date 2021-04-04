@@ -50,10 +50,9 @@ VERSION=$(curl https://api.github.com/repos/hashicorp/terraform/releases/latest 
 echo "Installing Terraform ${VERSION} on ${OS} (${ARCH}) in to ${OUT_DIR}.."
 
 wget "https://releases.hashicorp.com/terraform/${VERSION}/terraform_${VERSION}_${OS}_${ARCH}.zip"
-unzip -o "terraform_${VERSION}_${OS}_${ARCH}.zip" -d /usr/local/bin
+unzip -o "terraform_${VERSION}_${OS}_${ARCH}.zip" -d "${OUT_DIR}"
+chmod +x "${OUT_DIR}/terraform"
 
-chmod +x /usr/local/bin/terraform
+echo "Terraform ${VERSION} installed to ${OUT_DIR}/terraform."
 
-echo "Terraform ${VERSION} installed to /usr/local/bin/terraform."
-
-rm "terraform_${VERSION}_darwin_amd64.zip"
+rm "terraform_${VERSION}_${OS}_${ARCH}.zip"
