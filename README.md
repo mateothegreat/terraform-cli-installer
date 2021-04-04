@@ -3,9 +3,7 @@
 ## One-liner
 
 ```bash
-wget https://raw.githubusercontent.com/mateothegreat/terraform-cli-installer/main/tf-install && \
-chmod +x tf-install && \
-./tf-install
+wget https://raw.githubusercontent.com/mateothegreat/terraform-cli-installer/main/tf-install && chmod +x tf-install && sudo ./tf-install
 ```
 
 ## Running
