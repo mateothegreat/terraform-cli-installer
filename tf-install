@@ -14,6 +14,13 @@ ARCH="amd64"
 TMP_DIR="/tmp"
 OUT_DIR="${1:-/usr/local/bin}"
 
+if [ "${EUID}" -ne 0 ];  then
+
+  echo "Please run as root"
+  exit 1
+
+fi
+
 if [ ! -d "${OUT_DIR}" ]; then
 
   echo "output directory ${OUT_DIR} does not exist, bailing!"
@@ -43,7 +50,7 @@ VERSION=$(curl https://api.github.com/repos/hashicorp/terraform/releases/latest 
 echo "Installing Terraform ${VERSION} on ${OS} (${ARCH}) in to ${OUT_DIR}.."
 
 wget "https://releases.hashicorp.com/terraform/${VERSION}/terraform_${VERSION}_${OS}_${ARCH}.zip"
-sudo unzip -o "terraform_${VERSION}_${OS}_${ARCH}.zip" -d /usr/local/bin
+unzip -o "terraform_${VERSION}_${OS}_${ARCH}.zip" -d /usr/local/bin
 
 chmod +x /usr/local/bin/terraform
 
