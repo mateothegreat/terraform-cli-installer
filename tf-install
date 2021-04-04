@@ -1,0 +1,52 @@
+#!/bin/sh
+#
+# Usage: ./tf-upgrade [optional output dir like /usr/local/bin]
+#
+case "$(uname -s)" in
+
+    Linux*)     OS=linux;;
+    Darwin*)    OS=darwin;;
+    *)          OS="UNSUPPORTED"
+
+esac
+
+ARCH="amd64"
+TMP_DIR="/tmp"
+OUT_DIR="${1:-/usr/local/bin}"
+
+if [ ! -d "${OUT_DIR}" ]; then
+
+  echo "output directory ${OUT_DIR} does not exist, bailing!"
+  exit 1
+
+fi
+
+if [ "${OS}" = "linux" ]; then
+
+  TMP_DIR="/tmp"
+
+elif [ "${OS}" = "darwin" ]; then
+
+  TMP_DIR="/private/tmp"
+
+else
+
+  echo "Bailing, unsupported environment ${OS}"
+  exit 1
+
+fi
+
+cd "${TMP_DIR}" || exit 1
+
+VERSION=$(curl https://api.github.com/repos/hashicorp/terraform/releases/latest --silent | jq ".tag_name" -r | sed 's/v//g')
+
+echo "Installing Terraform ${VERSION} on ${OS} (${ARCH}) in to ${OUT_DIR}.."
+
+wget "https://releases.hashicorp.com/terraform/${VERSION}/terraform_${VERSION}_${OS}_${ARCH}.zip"
+sudo unzip -o "terraform_${VERSION}_${OS}_${ARCH}.zip" -d /usr/local/bin
+
+chmod +x /usr/local/bin/terraform
+
+echo "Terraform ${VERSION} installed to /usr/local/bin/terraform."
+
+rm "terraform_${VERSION}_darwin_amd64.zip"
